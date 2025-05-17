@@ -1,0 +1,34 @@
+program: main.py
+
+method: bayes
+metric:
+  name: test_acc.max
+  goal: maximize
+parameters:
+  pool_size:
+    values: [10, 15, 20, 25, 30, 35, 40]
+  top_k:
+    values: [5, 6, 7, 8, 9, 10]
+  num_outer_loops:
+    values: [5, 6, 7, 8, 9, 10]
+  algorithm:
+    values: ["multimodal.food101.Fed-Prime", "multimodal.food101.Fed-Intra", "multimodal.food101.Fed-Inter", "multimodal.food101.FedAvg_P", "multimodal.food101.FedProx_P", "multimodal.food101.FedMSplit_P", "multimodal.food101.Centralized_P"]
+  learning_rate:
+    values: [0.05, 0.1]
+  batch_size:
+    values: [256, 512]
+  num_epochs:
+    values: [250, 500]
+  model:
+    values: ["FedMSplit_P"]
+
+command:
+  - ${env}
+  - python3
+  - main.py
+  - "--gpu"
+  - "0"
+  - "--task"
+  - "food101_cnum20_dist0_skew0_seed0_missing_ratio_0.7_0.7_missing_type_both_both_both_ratio_0.5"
+  - ${args}
+
