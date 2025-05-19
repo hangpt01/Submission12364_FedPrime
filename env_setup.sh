@@ -1,5 +1,3 @@
-conda create -n fmfl python=3.8 -y
-conda activate fmfl
 pip install torch==2.3.1+cu118 torchvision==0.18.1+cu118 torchaudio==2.3.1+cu118 -f https://download.pytorch.org/whl/cu118/torch_stable.html
 pip install -r requirements.txt
 pip install protobuf fonttools imgaug opencv-python pyyaml regex scipy

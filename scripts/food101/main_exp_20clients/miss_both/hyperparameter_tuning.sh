@@ -25,7 +25,7 @@ for algo in "${algorithms[@]}"; do
                     --algorithm "multimodal.food101.$algo" \
                     --sample full \
                     --aggregate other \
-                    --num_rounds 1 \
+                    --num_rounds 250 \
                     --proportion 1.0 \
                     --lr_scheduler 0 \
                     --seed 1234 \

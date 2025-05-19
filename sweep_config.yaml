@@ -6,29 +6,47 @@ metric:
   goal: maximize
 parameters:
   pool_size:
-    values: [10, 15, 20, 25, 30, 35, 40]
+    values: [10]
   top_k:
-    values: [5, 6, 7, 8, 9, 10]
+    values: [2,4]
   num_outer_loops:
-    values: [5, 6, 7, 8, 9, 10]
-  algorithm:
-    values: ["multimodal.food101.Fed-Prime", "multimodal.food101.Fed-Intra", "multimodal.food101.Fed-Inter", "multimodal.food101.FedAvg_P", "multimodal.food101.FedProx_P", "multimodal.food101.FedMSplit_P", "multimodal.food101.Centralized_P"]
-  learning_rate:
-    values: [0.05, 0.1]
-  batch_size:
-    values: [256, 512]
-  num_epochs:
-    values: [250, 500]
-  model:
-    values: ["FedMSplit_P"]
+    values: [5]
 
 command:
   - ${env}
   - python3
   - main.py
-  - "--gpu"
-  - "0"
   - "--task"
   - "food101_cnum20_dist0_skew0_seed0_missing_ratio_0.7_0.7_missing_type_both_both_both_ratio_0.5"
-  - ${args}
+  - "--model"
+  - "Fed-Prime"
+  - "--algorithm"
+  - "multimodal.food101.Fed-Prime"
+  - "--sample"
+  - "full"
+  - "--aggregate"
+  - "other"
+  - "--num_rounds"
+  - "2"
+  - "--proportion"
+  - "1.0"
+  - "--lr_scheduler"
+  - "0"
+  - "--seed"
+  - "1234"
+  - "--num_epochs"
+  - "1"
+  - "--learning_rate"
+  - "0.05"
+  - "--learning_rate_decay"
+  - "1.0"
+  - "--batch_size"
+  - "128"
+  - "--test_batch_size"
+  - "128"
+  - "--max_text_len"
+  - "40"
+  - "--gpu"
+  - "1"
+  - "--wandb"
 
